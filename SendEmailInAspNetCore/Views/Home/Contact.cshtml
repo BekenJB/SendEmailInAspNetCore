@@ -1,17 +1,51 @@
-﻿@{
+﻿@model SendEmailInAspNetCore.Models.ContactViewModel
+@{
     ViewData["Title"] = "Contact";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+<h3>Send E-mail In ASP.Net Core 2.1 Using MailKit</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<div>
+    <div>
+        @if (ViewBag.Exception != null)
+        {
+            <div>@ViewBag.Exception</div>
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+
+        }
+    </div>
+</div>
+<div class="has-error" col-md-12>
+    <form method="post">
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label asp-for="Name">Name:</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-muted"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label asp-for="Email">Email:</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-muted"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label asp-for="Subject">Subject:</label>
+                <input asp-for="Subject" class="form-control" />
+                <span asp-validation-for="Subject" class="text-muted"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label asp-for="Message">Message:</label>
+                <textarea rows="8" cols="20" asp-for="Message" class="form-control"></textarea>
+                <span asp-validation-for="Message" class="text-muted"></span>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-success">Send Message</button>
+        </div>
+    </form>
+</div>
